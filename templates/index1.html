@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+ <style>
+
+title{
+color: blue;
+}
+
+a:hover {
+  color: white;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+form{
+text-align: center;
+color:#9900FF;
+font-weight: bold
+}
+
+body{
+background-image: url("static/Background1.jpg");
+background-size: cover;
+background-position: center;
+ background-repeat: no-repeat; 
+ }
+
+</style> 
+  <meta charset="UTF-8">
+  <title>IPL Score Predictor</title>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+</head>
+<a href = 'https://www.linkedin.com/in/ankurbhargava2015/'>LinkedIn Profile Link</a>
+
+
+<body style="background-color:coral;">
+
+
+ <div class="login">
+											<h1 style="text-align:center;color:#000066">IPL First Innings Score Predictor</h1>
+											
+
+<p style="color:#0066CC;font-weight: bold"> 
+Below is an IPL Score Predictor Application where final score could be predicted. 
+To use use this app, minimum 5 overs should have been bowled and runs scored and wickets taken in last 5 overs are required
+</p>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+	
+	
+		<label for = "batting_team"> Batting Team:</label>
+		<select id="batting_team" name="batting_team">
+			<option value="Delhi Daredevils">Delhi Daredevils</option>
+			<option value="Kings XI Punjab">Kings XI Punjab</option>
+			<option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+			<option value="Mumbai Indians">Mumbai Indians</option>
+			<option value="Rajasthan Royals">Rajasthan Royals</option>
+			<option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+			<option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+			<option value="Chennai Super Kings">Chennai Super Kings</option>
+       </select><br><br>
+	   
+	   
+		<label for = "bowling_team"> Bowling Team:</label>
+		<select id="bowling_team" name="bowling_team">
+			<option value="Delhi Daredevils">Delhi Daredevils</option>
+			<option value="Kings XI Punjab">Kings XI Punjab</option>
+			<option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+			<option value="Mumbai Indians">Mumbai Indians</option>
+			<option value="Rajasthan Royals">Rajasthan Royals</option>
+			<option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+			<option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+			<option value="Chennai Super Kings">Chennai Super Kings</option>
+       </select><br><br>
+	
+		<label for = "venue"> Venue:</label>
+		<select id="venue" name="venue">
+			<option value="Feroz Shah Kotla">Feroz Shah Kotla</option>
+			<option value="M Chinnaswamy Stadium">M Chinnaswamy Stadium</option>
+			<option value="MA Chidambaram Stadium, Chepauk">MA Chidambaram Stadium</option>
+			<option value="Punjab Cricket Association Stadium, Mohali">Punjab Cricket Association Stadium</option>
+			<option value="Rajiv Gandhi International Stadium, Uppal">Rajiv Gandhi International Stadium</option>
+			<option value="Sawai Mansingh Stadium">Sawai Mansingh Stadium</option>
+			<option value="Wankhede Stadium">Wankhede Stadium</option>
+			<option value="Eden Gardens">Eden Gardens</option>
+			<option value="other">Other</option>
+       </select><br><br>
+		
+		<label for = "runs"> Runs:</label> 
+		<input type="text" name="runs" placeholder="Example :- 40 50 60" required="required"/><br><br>
+		<label for = "wickets"> Wickets:</label>
+        <input type="text" name="wickets" placeholder="Example:- 1 2 3" required="required" /><br><br>
+		<label for = "overs"> Overs:</label>
+		<input type="text" name="overs" placeholder="Example:- 5.4 6.2 15.3" required="required" /><br><br>
+		<label for = "runs_last_5"> Runs Last 5 Overs:</label>
+        <input type="text" name="runs_last_5" placeholder="Example:- 20 40" required="required" /><br><br>
+		<label for = "wickets_last_5"> Wickets Last 5 Overs:</label>
+        <input type="text" name="wickets_last_5" placeholder="Example:- 1 2 4" required="required" /><br><br>
+		
+		
+        <button type="submit" class="btn btn-primary btn-block btn-large" >Predict</button>
+    </form>
+
+     <br>
+   <br>
+<p style="font-weight: bold;text-align:center;color:#FFFFCC;font-size:20px;">
+  The score is predicted to be in between {{lower_limit}} and {{upper_limit}}
+   </p>
+ </div>
+
+</body>
+</html>
